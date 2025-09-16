@@ -3,23 +3,22 @@
  * @return {number}
  */
 var longestConsecutive = function (nums) {
-    const map = new Map()
-let longest = 0
+    if (nums.length === 0) {
+        return 0
+    }
 
-for (const num of nums) {
-  if (map.has(num)) continue
+    const numsSet = new Set(nums)
+    let longest = 1
+    for (const num of numsSet) {
+        if (!numsSet.has(num - 1)) {
+            let length = 1
+            while (numsSet.has(num + length)) {
+                length++
+            }
 
-  const left = map.get(num - 1) || 0
-  const right = map.get(num + 1) || 0
-  const length = left + right + 1
+            longest = Math.max(length, longest)
+        }
+    }
 
-  map.set(num, length)
-  longest = Math.max(longest, length)
-
-  map.set(num - left, length)
-  map.set(num + right, length)
-}
-
-return longest
-
+    return longest
 };

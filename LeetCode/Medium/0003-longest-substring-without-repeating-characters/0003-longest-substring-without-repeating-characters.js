@@ -5,17 +5,15 @@
 var lengthOfLongestSubstring = function (s) {
     let answer = 0
     let left = 0
-    let right = 0
-    const uniqueWords = new Set()
+    const wordIndexMap = new Map()
 
-    while (left <= right && right < s.length) {
-        while (uniqueWords.has(s[right])) {
-            uniqueWords.delete(s[left])
-            left++
+    for (let right = 0; right < s.length; right++) {
+        if (wordIndexMap.has(s[right]) && wordIndexMap.get(s[right]) >= left) {
+            left = wordIndexMap.get(s[right]) + 1
         }
-        uniqueWords.add(s[right])
-        answer = Math.max(right - left + 1, answer)
-        right++
+        
+        answer = Math.max(answer, right - left + 1)
+        wordIndexMap.set(s[right], right)
     }
 
     return answer

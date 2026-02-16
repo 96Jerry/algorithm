@@ -15,7 +15,7 @@ var characterReplacement = function (s, k) {
         maxCount = Math.max(charCount[char], maxCount)
 
         while (right - left + 1 - maxCount > k) {
-            charCount[s[left]] -= 1
+            charCount[s[left]]--
             left++
             continue
         }

@@ -14,5 +14,5 @@ var groupAnagrams = function (strs) {
         }
     }
 
-    return [...map].map(([key, value]) => value)
+    return [...map.values()]
 };

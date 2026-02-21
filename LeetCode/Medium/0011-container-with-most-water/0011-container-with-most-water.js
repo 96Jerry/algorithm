@@ -5,15 +5,13 @@
 var maxArea = function (height) {
     let left = 0
     let right = height.length - 1
-
-    let answer = Math.min(height[left], height[right]) * (right - left)
+    let answer = 0
     while (left < right) {
+        answer = Math.max(answer, Math.min(height[left], height[right]) * (right - left))
         if (height[left] <= height[right]) {
             left++
-            answer = Math.max(answer, Math.min(height[left], height[right]) * (right - left))
-        } else if (height[left] > height[right]) {
+        } else {
             right--
-            answer = Math.max(answer, Math.min(height[left], height[right]) * (right - left))
         }
     }
 

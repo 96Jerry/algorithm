@@ -3,12 +3,12 @@
  * @param {number} target
  * @return {number[]}
  */
-var twoSum = function (nums, target) {
-    const numIndexMap = new Map()
-
+var twoSum = function(nums, target) {
+    const map = new Map()
     for (let i = 0; i < nums.length; i++) {
-        if (numIndexMap.has(target - nums[i])) return [i, numIndexMap.get(target - nums[i])]
-
-        numIndexMap.set(nums[i], i)
+        const num = nums[i]
+        const partner = target - num
+        if (map.has(partner)) return [map.get(partner), i]
+        map.set(num, i)
     }
 };

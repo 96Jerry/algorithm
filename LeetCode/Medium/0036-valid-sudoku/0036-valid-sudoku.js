@@ -48,6 +48,7 @@ var isValidSudoku = function(board) {
         for (let j = 0; j < 9; j++) {
             // i와 j로 square에서의 위치 특정하기 0 ~ 9
             // 0,0 0,1 1,0 1,1 2,0 0,2 2,1 1,2 2,2
+            // 2차원을 1차원으로 바꾸기
             // x값에 3을 부여
             squares[3 * Math.floor(i/3) + Math.floor(j/3)].push(board[i][j])
         }

@@ -3,9 +3,20 @@
  * @return {boolean}
  */
 var isPalindrome = function (s) {
-    const a = [...s].filter((el) => (el.charCodeAt(0) >= 'A'.charCodeAt(0) && el.charCodeAt(0) <= 'Z'.charCodeAt(0)) || (el.charCodeAt(0) >= 'a'.charCodeAt(0) && el.charCodeAt(0) <= 'z'.charCodeAt(0)) || (el.charCodeAt(0) >= '0'.charCodeAt(0) && el.charCodeAt(0) <= '9'.charCodeAt(0))).map((el) => el.toLowerCase())
-    for (let i = 0; i < Math.floor(a.length / 2); i++) {
-        if (a[i] !== a[a.length - 1 - i]) return false
+    const isAlNum = (c) => {
+        return /[a-z0-9]/i.test(c)
+    }
+
+    let left = 0
+    let right = s.length - 1
+
+    while (left < right) {
+        while(left < right && !isAlNum(s[left])) left++
+        while(left < right && !isAlNum(s[right])) right--
+
+        if (s[left].toLowerCase() !== s[right].toLowerCase()) return false
+        left++
+        right--
     }
 
     return true

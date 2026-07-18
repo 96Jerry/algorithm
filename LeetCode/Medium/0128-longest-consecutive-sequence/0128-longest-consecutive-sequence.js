@@ -2,21 +2,21 @@
  * @param {number[]} nums
  * @return {number}
  */
-var longestConsecutive = function (nums) {
+var longestConsecutive = function(nums) {
     const set = new Set(nums)
+    let longest = 0
+    for (const n of set) {
+        if (set.has(n - 1)) continue
 
-    let answer = 0
-    for (const num of set) {
-        if (!set.has(num - 1)) {
-            let temp = 1
-            let current = num
-            while (set.has(current + 1)) {
-                temp++
-                current++
-            }
-            answer = Math.max(answer, temp)
+        let length = 1
+        let cur = n
+        while (set.has(cur + 1)) {
+            length++
+            cur++
         }
+
+        longest = Math.max(longest, length)
     }
 
-    return answer
+    return longest
 };
